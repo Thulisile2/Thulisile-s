@@ -1,0 +1,143 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 1.  First derivative
+# f'(x)=x**3 -2x -1
+# Forward difference
+# y_n' = (y_{n+1} - y_n)/h 
+# h>0
+
+# 2. First derivative
+# f'(x)=x**3 -2x -1
+# Backward difference
+# y_n' = (y_n - y_{n-1})/h 
+# h<0
+
+# 3. First derivative
+# f'(x)=x**3 -2x -1
+# Centered difference
+# y_n' = (y_{n+1} - y_{n-1})/h 
+# h=0
+x = np.linspace(-2,3,100)
+
+def func(x):
+  y = x**3 -2*x -1
+  return y
+
+#print(func(-2))
+
+def sec_d(f,h,x):
+  h = x[1] - x[0]
+  y_p = (f(x+h) - (f(x)))/h
+  return y_p
+
+h = 0.1
+
+def sec_d1(f,h_1,x):
+  h_1 = x[1] - x[0]
+  y_p1 = (f(x) - (f(x-h_1)))/h_1
+  return y_p1
+
+h_1 = -0.1
+
+def sec_d2(f,h_2,x):
+  h_2 = x[1] - x[0]
+  y_p2 = (f(x+h_2) - (f(x-h_2)))/h_2
+  return y_p2
+
+h_2 = 0
+
+
+#plt.figure()
+#plt.plot(x,func(x),'--r')
+
+plt.figure()
+plt.plot(x,x**3 -2*x -1,'k',label = 'Theoretical')
+plt.plot(x,sec_d(func,h,x),'.r',label = 'Numerical_Forward')
+plt.plot(x,sec_d1(func,h_1,x),'.b',label = 'Numerical_Backward')
+plt.plot(x,sec_d2(func,h_2,x),'.y',label = 'Numerical_Centered')
+plt.legend()
+
+#error
+plt.figure()
+plt.plot(x,x**3 -2*x -1 - sec_d(func,h,x),'*')
+plt.plot(x,x**3 -2*x -1 - sec_d1(func,h_1,x),'-')
+plt.plot(x,x**3 -2*x -1 - sec_d2(func,h_2,x),'--')
+
+
+import numpy as np
+import cmath
+#import math
+import matplotlib.pyplot as plt
+
+#math.function_name(parameter)
+
+# 1.  First derivative
+# f'(x)=1-xmath.tanh**2(x)
+# Forward difference
+# y_n' = (y_{n+1} - y_n)/h 
+# h>0
+
+# 2. First derivative
+# f'(x)=1-xmath.tanh**2(x)
+# Backward difference
+# y_n' = (y_n - y_{n-1})/h 
+# h<0
+
+# 3. First derivative
+# f'(x)=1-xmath.tanh**2(x)
+# Centered difference
+# y_n' = (y_{n+1} - y_{n-1})/h 
+# h=0
+
+#x = np.linspace(-5,5,100)
+#x = complex(-5,5)
+
+#f2 = np.vectorize(int)
+#y = 1-cmath.tanh(x)
+#return y
+
+def func(x):
+    return int(x)
+f2 = np.vectorize(func)
+x = np.arange(-5, 5, 100)
+y = 1-cmath.tanh(x)
+#return y
+
+
+def sec_d(f,h,x):
+  #h = x[1] - x[0]
+  y_p = (f(x+h) - (f(x)))/h
+  return y_p
+
+h = 0.1
+
+def sec_d1(f,h_1,x):
+ # h_1 = x[1] - x[0]
+  y_p1 = (f(x) - (f(x-h_1)))/h_1
+  return y_p1
+
+h_1 = -0.1
+
+def sec_d2(f,h_2,x):
+  #h_2 = x[1] - x[0]
+  y_p2 = (f(x+h_2) - (f(x-h_2)))/h_2
+  return y_p2
+
+#h_2 = 0
+
+plt.figure()
+plt.plot(x,x**3 -2*x -1,'k',label = 'Theoretical')
+plt.plot(x,sec_d(func,h,x),'.r',label = 'Numerical_Forward')
+plt.plot(x,sec_d1(func,h_1,x),'.b',label = 'Numerical_Backward')
+plt.plot(x,sec_d2(func,h_2,x),'.y',label = 'Numerical_Centered')
+plt.legend()
+
+#error
+plt.figure()
+plt.plot(x,x**3 -2*x -1 - sec_d(func,h,x),'*')
+plt.plot(x,x**3 -2*x -1 - sec_d1(func,h_1,x),'-')
+plt.plot(x,x**3 -2*x -1 - sec_d2(func,h_2,x),'--')
+
+
+
